@@ -15,7 +15,7 @@ export const ContactForm = () => {
     const contact = {name: name.value , number: number.value, id: nanoid()}
 
     if (contacts.some(contactInput => contactInput.name.toLowerCase() === contact.name.toLowerCase())) {
-      alert("Hello");
+      alert("This contact already exists");
     } else {
       dispatch(addContactsThunk(contact))
       form.reset()
