@@ -1,22 +1,30 @@
-import React from 'react';
-import Form from './Form';
-import Section from './Section';
-import Contacts from './Contacts';
-import Filter from './Filter';
+import { Section } from "./Section/Section";
+import { ContactForm } from "./ContactForm/ContactForm";
+import { ContactList } from './ContactList/ContactList'
+import { Filter } from "./Filter/Filter";
+import { useSelector } from "react-redux";
 
-function App() {
+export const App = () => {
+
+  const contacts = useSelector( state => {
+    return state.contacts.contacts
+  })
+
   return (
-    <>
+    <div>
       <Section title="Phonebook">
-        <Form />
+        <ContactForm
+        />
       </Section>
-
       <Section title="Contacts">
-        <Filter />
-        <Contacts />
+        <>
+          {contacts.length !== 0 && (
+          <Filter/>
+          )}
+          <ContactList/>
+        </>
+
       </Section>
-    </>
+    </div>
   );
 }
-
-export default App;
